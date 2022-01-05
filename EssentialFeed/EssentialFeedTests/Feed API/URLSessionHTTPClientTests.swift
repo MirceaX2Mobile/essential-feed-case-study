@@ -140,7 +140,7 @@ class URLSessionHTTPClientTests: XCTestCase {
 		private static var requestObserver: ((URLRequest) -> Void)?
 		
 		private struct Stub {
-			let data: Data?
+			let data: Data? 
 			let response: URLResponse?
 			let error: Error?
 		}
