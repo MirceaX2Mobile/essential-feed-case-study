@@ -124,25 +124,18 @@ Location</string>
                         <connections>
                             <outlet property="dataSource" destination="CxJ-yU-CzX" id="cYL-Cs-RX6"/>
                             <outlet property="delegate" destination="CxJ-yU-CzX" id="q9S-Zj-yxY"/>
+                            <outlet property="prefetchDataSource" destination="CxJ-yU-CzX" id="bWG-6g-V0A"/>
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="FGg-u3-rHc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="refresh" destination="YuY-YS-8xZ" eventType="valueChanged" id="Vrc-8H-gwm"/>
+                            <action selector="refresh" destination="CxJ-yU-CzX" eventType="valueChanged" id="m7I-8T-gt0"/>
                         </connections>
                     </refreshControl>
-                    <connections>
-                        <outlet property="refreshController" destination="YuY-YS-8xZ" id="58S-5E-1lj"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmi-qE-oxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="YuY-YS-8xZ" customClass="FeedRefreshViewController" customModule="EssentialFeediOS" customModuleProvider="target">
-                    <connections>
-                        <outlet property="view" destination="FGg-u3-rHc" id="jF7-LD-URj"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="1105.7971014492755" y="-11.383928571428571"/>
         </scene>
