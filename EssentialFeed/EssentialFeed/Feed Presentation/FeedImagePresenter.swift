@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import EssentialFeed
 
 public protocol FeedImageView {
     associatedtype Image
@@ -24,7 +23,7 @@ public final class FeedImagePresenter<View: FeedImageView, Image> where View.Ima
         self.imageTransformer = imageTransformer
     }
     
-    func didStartLoadingImageData(for model: FeedImage) {
+    public func didStartLoadingImageData(for model: FeedImage) {
         view.display(FeedImageViewModel(
             description: model.description,
             location: model.location,
