@@ -36,6 +36,10 @@ extension FeedViewController {
         ds?.tableView(tableView, prefetchRowsAt: [index])
     }
     
+    func renderedFeedImageData(at index: Int) -> Data? {
+        return simulateFeedImageViewVisible(at: index)?.renderedImage
+    }
+    
     func simulateFeedImageViewNotNearVisible(at row: Int) {
         simulateFeedImageViewNearVisible(at: row)
         
@@ -57,6 +61,9 @@ extension FeedViewController {
     }
     
     func feedImageView(at row: Int) -> UITableViewCell? {
+        guard numberOfRenderedFeedImageViews() > row else {
+            return nil
+        }
         let ds = tableView.dataSource
         let index = IndexPath(row: row, section: feedImagesSection)
         return ds?.tableView(tableView, cellForRowAt: index)
