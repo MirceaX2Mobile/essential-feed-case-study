@@ -18,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         .appendingPathComponent("feed-store.sqlite")
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
-        
+        configureWindow()
+    }
+    
+    func configureWindow() {
         guard let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed") else {
             return
         }
@@ -45,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fallback: localImageLoader)
         )
         
-        window?.rootViewController = feedViewController
+        window?.rootViewController = UINavigationController(rootViewController: feedViewController)
     }
     
     func makeRemoteClient() -> HTTPClient {
