@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import EssentialFeed
-import EssentialFeediOS
 import CoreData
+import EssentialFeed
+import EssentialFeedAPI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -35,6 +35,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let scene = scene as? UIWindowScene else { return }
+        
+        window = UIWindow(windowScene: scene)
+        
         configureWindow()
     }
     
@@ -61,6 +65,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         
         window?.rootViewController = UINavigationController(rootViewController: feedViewController)
+        window?.makeKeyAndVisible()
     }
     
     func sceneWillResignActive(_ scene: UIScene) {

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import EssentialFeed
 
 final class FeedItemsMapper {
 	private struct Root: Decodable {

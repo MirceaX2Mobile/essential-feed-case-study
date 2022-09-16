@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import EssentialFeed
 
 public final class RemoteFeedLoader: FeedLoader {
 	private let url: URL
