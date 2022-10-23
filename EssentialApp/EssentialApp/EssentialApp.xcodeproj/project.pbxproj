@@ -41,6 +41,7 @@
 		31E7DEA928C0B6CC00D248A9 /* FeedUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7DEA828C0B6CC00D248A9 /* FeedUIIntegrationTests.swift */; };
 		31E7DEAB28C0B89800D248A9 /* FeedAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7DEAA28C0B89800D248A9 /* FeedAcceptanceTests.swift */; };
 		31E7DEB828C23E1E00D248A9 /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7DEB728C23E1E00D248A9 /* UIView+TestHelpers.swift */; };
+		31F1D99A29059F8D0073F36E /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F1D99929059F8D0073F36E /* CombineHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		31E7DEA828C0B6CC00D248A9 /* FeedUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIIntegrationTests.swift; sourceTree = "<group>"; };
 		31E7DEAA28C0B89800D248A9 /* FeedAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAcceptanceTests.swift; sourceTree = "<group>"; };
 		31E7DEB728C23E1E00D248A9 /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
+		31F1D99929059F8D0073F36E /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		31C905FC284A057100FA8A27 /* EssentialApp */ = {
 			isa = PBXGroup;
 			children = (
+				31F1D99929059F8D0073F36E /* CombineHelpers.swift */,
 				31E7DE8928C0B67500D248A9 /* FeedUIComposer.swift */,
 				31E7DE8A28C0B67500D248A9 /* WeakRefVirtualProxy.swift */,
 				31E7DE8C28C0B67500D248A9 /* FeedLoaderPresentationAdapter.swift */,
@@ -314,6 +317,7 @@
 				31C90600284A057100FA8A27 /* SceneDelegate.swift in Sources */,
 				31E7DE8F28C0B67500D248A9 /* FeedImageDataLoaderPresentationAdapter.swift in Sources */,
 				31E7DE9428C0B67500D248A9 /* FeedUIComposer.swift in Sources */,
+				31F1D99A29059F8D0073F36E /* CombineHelpers.swift in Sources */,
 				31E7DE9028C0B67500D248A9 /* FeedViewAdapter.swift in Sources */,
 				31E7DE9328C0B67500D248A9 /* WeakRefVirtualProxy.swift in Sources */,
 			);
