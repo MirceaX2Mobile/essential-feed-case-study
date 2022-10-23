@@ -6,42 +6,36 @@ import XCTest
 import EssentialFeed
 import EssentialFeedAPI
 
-class LoadFeedFromRemoteUseCaseTests: XCTestCase {
+class FeedItemsMapperTests: XCTestCase {
     
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        let (sut, client) = makeSUT()
-        
+    func test_map_throwsErrorOnNon200HTTPResponse() throws {
         let samples = [199, 201, 300, 400, 500]
+        let json = makeItemsJSON([])
         
-        samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: failure(.invalidData), when: {
-                let json = makeItemsJSON([])
-                client.complete(withStatusCode: code, data: json, at: index)
-            })
+        try samples.forEach { code in
+            XCTAssertThrowsError(
+                try FeedItemsMapper.map(json, from: HTTPURLResponse(statusCode: code))
+            )
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
-        let (sut, client) = makeSUT()
+    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() throws {
+        let invalidJSON = Data("invalid json".utf8)
         
-        expect(sut, toCompleteWith: failure(.invalidData), when: {
-            let invalidJSON = Data("invalid json".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
-        })
+        XCTAssertThrowsError(
+            try FeedItemsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
+        )
     }
     
-    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
-        let (sut, client) = makeSUT()
+    func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
+        let emptyListJSON = makeItemsJSON([])
         
-        expect(sut, toCompleteWith: .success([]), when: {
-            let emptyListJSON = makeItemsJSON([])
-            client.complete(withStatusCode: 200, data: emptyListJSON)
-        })
+        let result = try FeedItemsMapper.map(emptyListJSON, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(result, [])
     }
     
-    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
-        let (sut, client) = makeSUT()
-        
+    func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
         let item1 = makeItem(
             id: UUID(),
             imageURL: URL(string: "http://a-url.com")!)
@@ -52,12 +46,11 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
             location: "a location",
             imageURL: URL(string: "http://another-url.com")!)
         
-        let items = [item1.model, item2.model]
+        let json = makeItemsJSON([item1.json, item2.json])
         
-        expect(sut, toCompleteWith: .success(items), when: {
-            let json = makeItemsJSON([item1.json, item2.json])
-            client.complete(withStatusCode: 200, data: json)
-        })
+        let result = try FeedItemsMapper.map(json, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(result, [item1.model, item2.model])
     }
     
     // MARK: - Helpers
@@ -113,5 +106,11 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1.0)
+    }
+}
+
+private extension HTTPURLResponse {
+    convenience init(statusCode: Int) {
+        self.init(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
 }
