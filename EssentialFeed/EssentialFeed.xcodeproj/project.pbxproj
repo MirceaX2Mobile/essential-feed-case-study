@@ -98,8 +98,6 @@
 		31EFCBFF279FECAD00A6ECA7 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844768E21FCB24E00439BE9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		31EFCC0127A0382A00A6ECA7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EFCC0027A0382A00A6ECA7 /* FeedViewController.swift */; };
 		31F1D98B290583A90073F36E /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F1D98829057C150073F36E /* ImageComment.swift */; };
-		31F1D996290592E90073F36E /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F1D995290592E90073F36E /* RemoteLoaderTests.swift */; };
-		31F1D998290593990073F36E /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F1D997290593990073F36E /* RemoteLoader.swift */; };
 		31F5491428D4A4E700623140 /* EssentialFeedCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3133296827906B2D007E5561 /* EssentialFeedCacheIntegrationTests.swift */; };
 		31F5491628D4A55800623140 /* EssentialFeedAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899395E220359C50031B03D /* EssentialFeedAPIEndToEndTests.swift */; };
 /* End PBXBuildFile section */
@@ -272,8 +270,6 @@
 		31E904F627C400E9009AF3F5 /* FeedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewModel.swift; sourceTree = "<group>"; };
 		31EFCC0027A0382A00A6ECA7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		31F1D98829057C150073F36E /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
-		31F1D995290592E90073F36E /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
-		31F1D997290593990073F36E /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -662,7 +658,6 @@
 			isa = PBXGroup;
 			children = (
 				08C0880B21E4EED600ACFB30 /* HTTPClient.swift */,
-				31F1D997290593990073F36E /* RemoteLoader.swift */,
 			);
 			path = "Shared API";
 			sourceTree = "<group>";
@@ -679,7 +674,6 @@
 			isa = PBXGroup;
 			children = (
 				31F1D98F29058B1F0073F36E /* Helpers */,
-				31F1D995290592E90073F36E /* RemoteLoaderTests.swift */,
 			);
 			path = "Shared API";
 			sourceTree = "<group>";
@@ -1114,7 +1108,6 @@
 				3114208828CF3408008BF9D2 /* URLSessionHTTPClient.swift in Sources */,
 				3114208428CF3408008BF9D2 /* RemoteFeedImageDataLoader.swift in Sources */,
 				3114208728CF3408008BF9D2 /* HTTPClient.swift in Sources */,
-				31F1D998290593990073F36E /* RemoteLoader.swift in Sources */,
 				3114206B28CF3377008BF9D2 /* EssentialFeedAPI.docc in Sources */,
 				3114209728CF35B7008BF9D2 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				3105AE4328E57D8E00ADDDF9 /* ImageCommentsMapper.swift in Sources */,
@@ -1130,7 +1123,6 @@
 				3114209128CF3443008BF9D2 /* URLSessionHTTPClientTests.swift in Sources */,
 				3114209B28CF36DE008BF9D2 /* SharedTestHelpers.swift in Sources */,
 				3114209028CF3443008BF9D2 /* LoadFeedImageDataFromRemoteUseCaseTests.swift in Sources */,
-				31F1D996290592E90073F36E /* RemoteLoaderTests.swift in Sources */,
 				3114209228CF3443008BF9D2 /* FeedItemsMapperTests.swift in Sources */,
 				3105AE3F28E57BFA00ADDDF9 /* ImageCommentsMapperTests.swift in Sources */,
 				3114209828CF35BF008BF9D2 /* HTTPClientSpy.swift in Sources */,
@@ -1617,7 +1609,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CDZA42UB8C;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mirceadragota.EssentialFeedCacheIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1636,7 +1628,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CDZA42UB8C;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mirceadragota.EssentialFeedCacheIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1660,7 +1652,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Essential Developer. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1691,7 +1683,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Essential Developer. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
