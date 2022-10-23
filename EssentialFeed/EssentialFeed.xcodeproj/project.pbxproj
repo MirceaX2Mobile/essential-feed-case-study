@@ -100,6 +100,7 @@
 		31EFCBFB279FEC1100A6ECA7 /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 080EDEF121B6DA7E00813479 /* EssentialFeed.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31EFCBFF279FECAD00A6ECA7 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844768E21FCB24E00439BE9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		31EFCC0127A0382A00A6ECA7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EFCC0027A0382A00A6ECA7 /* FeedViewController.swift */; };
+		31F1D98B290583A90073F36E /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F1D98829057C150073F36E /* ImageComment.swift */; };
 		31F5491428D4A4E700623140 /* EssentialFeedCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3133296827906B2D007E5561 /* EssentialFeedCacheIntegrationTests.swift */; };
 		31F5491628D4A55800623140 /* EssentialFeedAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899395E220359C50031B03D /* EssentialFeedAPIEndToEndTests.swift */; };
 /* End PBXBuildFile section */
@@ -274,6 +275,7 @@
 		31E7DEB528C2223D00D248A9 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		31E904F627C400E9009AF3F5 /* FeedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewModel.swift; sourceTree = "<group>"; };
 		31EFCC0027A0382A00A6ECA7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		31F1D98829057C150073F36E /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				080EDEF521B6DA7E00813479 /* Info.plist */,
+				31F1D98729057BDC0073F36E /* Image Comments Feature */,
 				3146D6EC27D127BB006569F0 /* Feed Presentation */,
 				089C40DA22170EB200DE552E /* Feed Cache */,
 				080EDF1021B6DFA200813479 /* Feed Feature */,
@@ -653,6 +656,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		31F1D98729057BDC0073F36E /* Image Comments Feature */ = {
+			isa = PBXGroup;
+			children = (
+				31F1D98829057C150073F36E /* ImageComment.swift */,
+			);
+			path = "Image Comments Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -974,6 +985,7 @@
 				3146D6FA27D23C2C006569F0 /* FeedImagePresenter.swift in Sources */,
 				31332961279051F8007E5561 /* CoreDataHelpers.swift in Sources */,
 				3146D6F127D128A8006569F0 /* FeedViewModel.swift in Sources */,
+				31F1D98B290583A90073F36E /* ImageComment.swift in Sources */,
 				31E0C4ED278F22500083DD52 /* FeedStore.xcdatamodeld in Sources */,
 				3146D6EE27D127EB006569F0 /* FeedPresenter.swift in Sources */,
 				311420C728CF3B86008BF9D2 /* LocalFeedImageDataLoader.swift in Sources */,
