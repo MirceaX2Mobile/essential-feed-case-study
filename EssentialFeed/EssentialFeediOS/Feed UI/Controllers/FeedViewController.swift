@@ -13,16 +13,26 @@ public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
+public protocol CellController {
+    func view(in: UITableView) -> UITableViewCell
+    func preload()
+    func cancelLoad()
+}
+
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
     @IBOutlet private(set) public weak var errorView: ErrorView!
+    
     public var delegate: FeedViewControllerDelegate?
-    private var loadingControllers = [IndexPath: FeedImageCellController]()
-    private var tableModel = [FeedImageCellController]() {
+    
+    private var loadingControllers = [IndexPath: CellController]()
+    
+    private var tableModel = [CellController]() {
         didSet {
             tableView.reloadData()
         }
     }
-    private var cellControllers = [IndexPath: FeedImageCellController]()
+    
+    private var cellControllers = [IndexPath: CellController]()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +46,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         tableView.sizeTableHeaderToFit()
     }
 
-    public func display(_ cellControllers: [FeedImageCellController]) {
+    public func display(_ cellControllers: [CellController]) {
         loadingControllers = [:]
         tableModel = cellControllers
     }
@@ -75,7 +85,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         indexPaths.forEach(cancelCellControllerLoad)
     }
     
-    func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
+    func cellController(forRowAt indexPath: IndexPath) -> CellController {
         let controller = tableModel[indexPath.row]
         loadingControllers[indexPath] = controller
         return controller
