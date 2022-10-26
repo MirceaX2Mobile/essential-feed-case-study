@@ -12,15 +12,6 @@ import EssentialFeediOS
 
 class FeedSnapshotTests: XCTestCase {
 
-    func test_emptyFeed() {
-        let sut = makeSUT()
-        
-        sut.display(emptyFeed())
-        
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "EMPTY_FEED_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "EMPTY_FEED_dark")
-    }
-    
     func test_feedWithContent() {
         let sut = makeSUT()
         
@@ -28,15 +19,6 @@ class FeedSnapshotTests: XCTestCase {
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_CONTENT_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_CONTENT_dark")
-    }
-    
-    func test_feedWithErrorMessage() {
-        let sut = makeSUT()
-        
-        sut.display(.error(message: "A \nmulti-line \nerror message"))
-        
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_ERROR_MESSAGE_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_ERROR_MESSAGE_dark")
     }
     
     func test_feedWithFailedImageLoading() {
@@ -58,10 +40,6 @@ class FeedSnapshotTests: XCTestCase {
         controller.tableView.showsVerticalScrollIndicator = false
         controller.tableView.showsHorizontalScrollIndicator = false
         return controller
-    }
-    
-    private func emptyFeed() -> [CellController] {
-        return []
     }
     
     private func feedWithContent() -> [ImageStub] {
@@ -93,8 +71,8 @@ class FeedSnapshotTests: XCTestCase {
 
 private extension ListViewController {
     func display(_ stubs: [ImageStub]) {
-        let cells: [CellController] = stubs.map { stub in
-            let cellController = CellController(viewModel: stub.viewModel, delegate: stub)
+        let cells: [FeedImageCellController] = stubs.map { stub in
+            let cellController = FeedImageCellController(viewModel: stub.viewModel, delegate: stub)
             stub.controller = cellController
             return cellController
         }
@@ -115,7 +93,7 @@ extension UIViewController {
 private class ImageStub: FeedImageCellControllerDelegate {
     let viewModel: FeedImageViewModel
     let image: UIImage?
-    weak var controller: CellController?
+    weak var controller: FeedImageCellController?
     
     init(description: String?, location: String?, image: UIImage?) {
         viewModel = FeedImageViewModel(description: description,
