@@ -152,6 +152,7 @@
 				31F1D99929059F8D0073F36E /* CombineHelpers.swift */,
 				31168C0F290BF14D0097A705 /* CommentsUIComposer.swift */,
 				31E7DE8928C0B67500D248A9 /* FeedUIComposer.swift */,
+				31168C13290C18CA0097A705 /* CommentsViewAdapter.swift */,
 				31E7DE8A28C0B67500D248A9 /* WeakRefVirtualProxy.swift */,
 				31E7DE8C28C0B67500D248A9 /* LoadResourcePresentationAdapter.swift */,
 				31E7DE8E28C0B67500D248A9 /* FeedViewAdapter.swift */,
@@ -160,7 +161,6 @@
 				31C905FF284A057100FA8A27 /* SceneDelegate.swift */,
 				31C90608284A057200FA8A27 /* LaunchScreen.storyboard */,
 				31C9060B284A057200FA8A27 /* Info.plist */,
-				31168C13290C18CA0097A705 /* CommentsViewAdapter.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
