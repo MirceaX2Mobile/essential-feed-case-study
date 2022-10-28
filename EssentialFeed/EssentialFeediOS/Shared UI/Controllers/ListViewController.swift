@@ -9,19 +9,26 @@
 import UIKit
 import EssentialFeed
 
-public protocol CellController {
-    func view(in: UITableView) -> UITableViewCell
-    func preload()
-    func cancelLoad()
-}
-
-public extension CellController {
-    func preload() {}
-    func cancelLoad() {}
+public struct CellController {
+    let dataSource: UITableViewDataSource
+    let delegate: UITableViewDelegate?
+    let dataSroucePrefetching: UITableViewDataSourcePrefetching?
+    
+    public init(_ dataSource: UITableViewDataSource & UITableViewDelegate & UITableViewDataSourcePrefetching) {
+        self.dataSource = dataSource
+        self.delegate = dataSource
+        self.dataSroucePrefetching = dataSource
+    }
+    
+    public init(_ dataSource: UITableViewDataSource) {
+        self.dataSource = dataSource
+        self.delegate = nil
+        self.dataSroucePrefetching = nil
+    }
 }
 
 public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
-    @IBOutlet private(set) public weak var errorView: ErrorView!
+    private(set) public var errorView = ErrorView()
     
     public var onRefresh: (() -> Void)?
     
@@ -37,8 +44,29 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureErrorView()
         refresh()
+    }
+    
+    private func configureErrorView() {
+        let container = UIView()
+        container.backgroundColor = .clear
+        container.addSubview(errorView)
+        
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: errorView.trailingAnchor),
+            errorView.topAnchor.constraint(equalTo: container.topAnchor),
+            container.bottomAnchor.constraint(equalTo: errorView.bottomAnchor),
+        ])
+        
+        tableView.tableHeaderView = container
+        errorView.onHide = { [weak self] in
+            self?.tableView.beginUpdates()
+            self?.tableView.sizeTableHeaderToFit()
+            self?.tableView.endUpdates()
+        }
     }
     
     public override func viewDidLayoutSubviews() {
@@ -57,7 +85,7 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     }
     
     public func display(_ viewModel: ResourceErrorViewModel) {
-        errorView?.message = viewModel.message
+        errorView.message = viewModel.message
     }
     
     @IBAction private func refresh() {
@@ -69,21 +97,27 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).view(in: tableView)
+        let ds = cellController(forRowAt: indexPath).dataSource
+        return ds.tableView(tableView, cellForRowAt: indexPath)
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cancelCellControllerLoad(forRowAt: indexPath)
+        let dl = removeLoadingController(forRowAt: indexPath)?.delegate
+        dl?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            cellController(forRowAt: indexPath).preload()
+            let dsp = cellController(forRowAt: indexPath).dataSroucePrefetching
+            dsp?.tableView(tableView, prefetchRowsAt: indexPaths)
         }
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(cancelCellControllerLoad)
+        indexPaths.forEach { indexPath in
+            let dsp = removeLoadingController(forRowAt: indexPath)?.dataSroucePrefetching
+            dsp?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
+        }
     }
     
     func cellController(forRowAt indexPath: IndexPath) -> CellController {
@@ -92,8 +126,9 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         return controller
     }
     
-    private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
-        loadingControllers[indexPath]?.cancelLoad()
+    private func removeLoadingController(forRowAt indexPath: IndexPath) -> CellController? {
+        let controller = loadingControllers[indexPath]
         loadingControllers[indexPath] = nil
+        return controller
     }
 }
