@@ -1,9 +1,5 @@
-//
-//  LoadResourcePresenter.swift
-//  EssentialFeed
-//
-//  Created by Mircea Dragota on 24.10.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//	
+// Copyright © 2020 Essential Developer. All rights reserved.
 //
 
 import Foundation
@@ -24,9 +20,9 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     
     public static var loadError: String {
         NSLocalizedString("GENERIC_CONNECTION_ERROR",
-                          tableName: "Shared",
-                          bundle: Bundle(for: Self.self),
-                          comment: "Error message displayed when we can't load the resource from the server")
+            tableName: "Shared",
+            bundle: Bundle(for: Self.self),
+            comment: "Error message displayed when we can't load the resource from the server")
     }
     
     public init(resourceView: View, loadingView: ResourceLoadingView, errorView: ResourceErrorView, mapper: @escaping Mapper) {
@@ -36,6 +32,13 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
         self.mapper = mapper
     }
     
+    public init(resourceView: View, loadingView: ResourceLoadingView, errorView: ResourceErrorView) where Resource == View.ResourceViewModel {
+        self.resourceView = resourceView
+        self.loadingView = loadingView
+        self.errorView = errorView
+        self.mapper = { $0 }
+    }
+        
     public func didStartLoading() {
         errorView.display(.noError)
         loadingView.display(ResourceLoadingViewModel(isLoading: true))

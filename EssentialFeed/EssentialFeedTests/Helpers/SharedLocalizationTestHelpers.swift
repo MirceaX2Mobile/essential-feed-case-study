@@ -1,14 +1,10 @@
-//
-//  SharedLocalizationTestHelpers.swift
-//  EssentialFeedTests
-//
-//  Created by Mircea Dragota on 24.10.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//	
+// Copyright © 2020 Essential Developer. All rights reserved.
 //
 
 import XCTest
 
-func assertLocalizedKeyAndValuesExist(in presentationBundle: Bundle, _ table: String, file: StaticString = #file, line: UInt = #line) {
+func assertLocalizedKeyAndValuesExist(in presentationBundle: Bundle, _ table: String, file: StaticString = #filePath, line: UInt = #line) {
     let localizationBundles = allLocalizationBundles(in: presentationBundle, file: file, line: line)
     let localizedStringKeys = allLocalizedStringKeys(in: localizationBundles, table: table, file: file, line: line)
     
@@ -27,7 +23,7 @@ func assertLocalizedKeyAndValuesExist(in presentationBundle: Bundle, _ table: St
 
 private typealias LocalizedBundle = (bundle: Bundle, localization: String)
 
-private func allLocalizationBundles(in bundle: Bundle, file: StaticString = #file, line: UInt = #line) -> [LocalizedBundle] {
+private func allLocalizationBundles(in bundle: Bundle, file: StaticString = #filePath, line: UInt = #line) -> [LocalizedBundle] {
     return bundle.localizations.compactMap { localization in
         guard
             let path = bundle.path(forResource: localization, ofType: "lproj"),
@@ -41,7 +37,7 @@ private func allLocalizationBundles(in bundle: Bundle, file: StaticString = #fil
     }
 }
 
-private func allLocalizedStringKeys(in bundles: [LocalizedBundle], table: String, file: StaticString = #file, line: UInt = #line) -> Set<String> {
+private func allLocalizedStringKeys(in bundles: [LocalizedBundle], table: String, file: StaticString = #filePath, line: UInt = #line) -> Set<String> {
     return bundles.reduce([]) { (acc, current) in
         guard
             let path = current.bundle.path(forResource: table, ofType: "strings"),

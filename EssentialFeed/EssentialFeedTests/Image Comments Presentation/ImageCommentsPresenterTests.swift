@@ -1,16 +1,12 @@
-//
-//  ImageCommentsPresenterTests.swift
-//  EssentialFeedTests
-//
-//  Created by Mircea Dragota on 26.10.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//	
+// Copyright © 2020 Essential Developer. All rights reserved.
 //
 
 import XCTest
 import EssentialFeed
 
-final class ImageCommentsPresenterTests: XCTestCase {
-    
+class ImageCommentsPresenterTests: XCTestCase {
+
     func test_title_isLocalized() {
         XCTAssertEqual(ImageCommentsPresenter.title, localized("IMAGE_COMMENTS_VIEW_TITLE"))
     }
@@ -21,21 +17,24 @@ final class ImageCommentsPresenterTests: XCTestCase {
         let locale = Locale(identifier: "en_US_POSIX")
         
         let comments = [
-            ImageComment(id: UUID(),
-                         message: "a message",
-                         createdAt: now.adding(minutes: -5, calendar: calendar),
-                         username: "a username"),
-            ImageComment(id: UUID(),
-                         message: "another message",
-                         createdAt: now.adding(days: -1, calendar: calendar),
-                         username: "another username")
+            ImageComment(
+                id: UUID(),
+                message: "a message",
+                createdAt: now.adding(minutes: -5, calendar: calendar),
+                username: "a username"),
+            ImageComment(
+                id: UUID(),
+                message: "another message",
+                createdAt: now.adding(days: -1, calendar: calendar),
+                username: "another username")
         ]
         
         let viewModel = ImageCommentsPresenter.map(
             comments,
             currentDate: now,
             calendar: calendar,
-            locale: locale)
+            locale: locale
+        )
         
         XCTAssertEqual(viewModel.comments, [
             ImageCommentViewModel(
@@ -52,8 +51,8 @@ final class ImageCommentsPresenterTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    private func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
+
+    private func localized(_ key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
         let table = "ImageComments"
         let bundle = Bundle(for: ImageCommentsPresenter.self)
         let value = bundle.localizedString(forKey: key, value: nil, table: table)
@@ -62,4 +61,5 @@ final class ImageCommentsPresenterTests: XCTestCase {
         }
         return value
     }
+
 }

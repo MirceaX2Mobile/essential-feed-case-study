@@ -1,36 +1,32 @@
 //
-//  FeedImageCellController.swift
-//  EssentialFeediOS
-//
-//  Created by Mircea Dragota on 16.02.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//  Copyright © 2019 Essential Developer. All rights reserved.
 //
 
 import UIKit
 import EssentialFeed
 
 public protocol FeedImageCellControllerDelegate {
-    func didRequestImage()
-    func didCancelImageRequest()
+	func didRequestImage()
+	func didCancelImageRequest()
 }
 
 public final class FeedImageCellController: NSObject {
     public typealias ResourceViewModel = UIImage
     
     private let viewModel: FeedImageViewModel
-    private let delegate: FeedImageCellControllerDelegate
+	private let delegate: FeedImageCellControllerDelegate
     private let selection: () -> Void
-    private var cell: FeedImageCell?
-    
+	private var cell: FeedImageCell?
+	
     public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate, selection: @escaping () -> Void) {
         self.viewModel = viewModel
-        self.delegate = delegate
+		self.delegate = delegate
         self.selection = selection
-    }
+	}
 }
 
 extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
-    
+	    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -41,18 +37,11 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         cell?.locationLabel.text = viewModel.location
         cell?.descriptionLabel.text = viewModel.description
         cell?.feedImageView.image = nil
-        cell?.feedImageContainer.isShimmering = true
-        cell?.feedImageRetryButton.isHidden = true
         cell?.onRetry = { [weak self] in
             self?.delegate.didRequestImage()
         }
         delegate.didRequestImage()
         return cell!
-    }
-    
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.cell = cell as? FeedImageCell
-        delegate.didRequestImage()
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,7 +69,7 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         cell = nil
     }
 }
-
+ 
 extension FeedImageCellController: ResourceView, ResourceLoadingView, ResourceErrorView {
     public func display(_ viewModel: UIImage) {
         cell?.feedImageView.setImageAnimated(viewModel)

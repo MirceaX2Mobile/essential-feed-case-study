@@ -1,29 +1,25 @@
-//
-//  ImageCommentsSnapshotTests.swift
-//  EssentialFeediOSTests
-//
-//  Created by Mircea Dragota on 26.10.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//	
+// Copyright © 2020 Essential Developer. All rights reserved.
 //
 
 import XCTest
 import EssentialFeediOS
 @testable import EssentialFeed
 
-final class ImageCommentsSnapshotTests: XCTestCase {
-    
+class ImageCommentsSnapshotTests: XCTestCase {
+
     func test_listWithComments() {
         let sut = makeSUT()
         
         sut.display(comments())
-        
+
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "IMAGE_COMMENTS_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "IMAGE_COMMENTS_dark")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "IMAGE_COMMENTS_light_extraExtraExtraLarge")
     }
-    
+
     // MARK: - Helpers
-    
+
     private func makeSUT() -> ListViewController {
         let bundle = Bundle(for: ListViewController.self)
         let storyboard = UIStoryboard(name: "ImageComments", bundle: bundle)
@@ -35,10 +31,10 @@ final class ImageCommentsSnapshotTests: XCTestCase {
     }
     
     private func comments() -> [CellController] {
-        commentsControllers().map { CellController(id: UUID(), $0) }
+        commentControllers().map { CellController(id: UUID(), $0) }
     }
     
-    private func commentsControllers() -> [ImageCommentCellController] {
+    private func commentControllers() -> [ImageCommentCellController] {
         return [
             ImageCommentCellController(
                 model: ImageCommentViewModel(
@@ -63,4 +59,5 @@ final class ImageCommentsSnapshotTests: XCTestCase {
             ),
         ]
     }
+
 }

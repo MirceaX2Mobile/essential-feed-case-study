@@ -1,15 +1,11 @@
-//
-//  ImageCommentsLocalizationTests.swift
-//  EssentialFeedTests
-//
-//  Created by Mircea Dragota on 26.10.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//	
+// Copyright © 2020 Essential Developer. All rights reserved.
 //
 
 import XCTest
 import EssentialFeed
 
-final class ImageCommentsLocalizationTests: XCTestCase {
+class ImageCommentsLocalizationTests: XCTestCase {
 
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "ImageComments"
@@ -17,4 +13,5 @@ final class ImageCommentsLocalizationTests: XCTestCase {
         
         assertLocalizedKeyAndValuesExist(in: bundle, table)
     }
+
 }

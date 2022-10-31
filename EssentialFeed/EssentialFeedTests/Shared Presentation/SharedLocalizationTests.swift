@@ -1,15 +1,12 @@
-//
-//  SharedLocalizationTests.swift
-//  EssentialFeedTests
-//
-//  Created by Mircea Dragota on 24.10.2022.
-//  Copyright © 2022 Essential Developer. All rights reserved.
+//	
+// Copyright © 2020 Essential Developer. All rights reserved.
 //
 
 import XCTest
 import EssentialFeed
 
-final class SharedLocalizationTests: XCTestCase {
+class SharedLocalizationTests: XCTestCase {
+    
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Shared"
         let bundle = Bundle(for: LoadResourcePresenter<Any, DummyView>.self)
@@ -20,4 +17,5 @@ final class SharedLocalizationTests: XCTestCase {
     private class DummyView: ResourceView {
         func display(_ viewModel: Any) {}
     }
+    
 }
