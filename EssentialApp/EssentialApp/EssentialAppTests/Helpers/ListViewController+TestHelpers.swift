@@ -1,5 +1,5 @@
 //
-//  FeedViewController+TestHelpers.swift
+//  ListViewController+TestHelpers.swift
 //  EssentialFeediOSTests
 //
 //  Created by Mircea Dragota on 25.02.2022.
@@ -30,6 +30,10 @@ extension ListViewController {
     
     var isShowingLoadingIndicator: Bool {
         return refreshControl?.isRefreshing == true
+    }
+    
+    var loadMoreFeedErrorMessage: String? {
+        return loadMoreFeedCell()?.message
     }
     
     func numberOfRows(in section: Int) -> Int {
@@ -81,6 +85,12 @@ extension ListViewController {
         delegate?.tableView?(tableView, didSelectRowAt: index)
     }
     
+    func simulateTapOnLoadMoreFeedError() {
+        let delegate = tableView.delegate
+        let index = IndexPath(row: 0, section: feedLoadMoreSection)
+        delegate?.tableView?(tableView, didSelectRowAt: index)
+    }
+    
     func simulateFeedImageViewNearVisible(at row: Int) {
         let ds = tableView.prefetchDataSource
         let index = IndexPath(row: row, section: feedImagesSection)
@@ -116,7 +126,7 @@ extension ListViewController {
     }
     
     func numberOfRenderedFeedImageViews() -> Int {
-        return tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: feedImagesSection)
+        return numberOfRows(in: feedImagesSection)
     }
     
     func feedImageView(at row: Int) -> UITableViewCell? {
@@ -129,7 +139,7 @@ extension ListViewController {
 
 extension ListViewController {
     func numberOfRenderedComments() -> Int {
-        return tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: commentsSection)
+        return numberOfRows(in: commentsSection)
     }
     
     private var commentsSection: Int {
