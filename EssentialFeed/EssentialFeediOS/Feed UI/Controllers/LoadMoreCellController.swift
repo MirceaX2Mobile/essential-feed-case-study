@@ -9,15 +9,25 @@
 import UIKit
 import EssentialFeed
 
-public class LoadMoreCellController: NSObject, UITableViewDataSource {
+public class LoadMoreCellController: NSObject, UITableViewDataSource, UITableViewDelegate {
     private let cell = LoadMoreCell()
+    private let callBack: () -> Void
+    
+    public init(callBack: @escaping () -> Void) {
+        self.callBack = callBack
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       cell
+        cell
+    }
+    
+    public func tableView(_ tableView: UITableView, willDisplay: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard !cell.isLoading else { return }
+        callBack()
     }
 }
 
