@@ -163,13 +163,16 @@ class FeedAcceptanceTests: XCTestCase {
     }
     
     private func makeData(for url: URL) -> Data {
-        switch url.absoluteString {
-        case "http://image.com":
+        switch url.path {
+        case "/image-1", "/image-2":
             return makeImageData()
-        case "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed":
+            
+        case "/essential-feed/v1/feed":
             return makeFeedData()
-        case "https://ile-api.essentialdeveloper.com/essential-feed/v1/image/A52358E5-831C-4F2E-97C0-89008F84ADE0/comments":
+            
+        case "/essential-feed/v1/image/2AB2AE66-A4B7-4A16-B374-51BBAC8DB086/comments":
             return makeCommentsData()
+            
         default:
             return Data()
         }
@@ -181,19 +184,20 @@ class FeedAcceptanceTests: XCTestCase {
     
     private func makeFeedData() -> Data {
         return try! JSONSerialization.data(withJSONObject: ["items": [
-            ["id": "A52358E5-831C-4F2E-97C0-89008F84ADE0", "image": "http://image.com"],
-            ["id": "EFFB55BD-338D-4C91-A09D-FE6B822D8020", "image": "http://image.com"]
+            ["id": "2AB2AE66-A4B7-4A16-B374-51BBAC8DB086", "image": "http://feed.com/image-1"],
+            ["id": "A28F5FE3-27A7-44E9-8DF5-53742D0E4A5A", "image": "http://feed.com/image-2"]
         ]])
     }
     
     private func makeCommentsData() -> Data {
         return try! JSONSerialization.data(withJSONObject: ["items": [
-            ["id": UUID().uuidString,
-             "message": makeCommentMessage(),
-             "created_at": "2020-05-20T11:24:59+0000",
-             "author": [
-                "username": "a username"
-             ]
+            [
+                "id": UUID().uuidString,
+                "message": makeCommentMessage(),
+                "created_at": "2020-05-20T11:24:59+0000",
+                "author": [
+                    "username": "a username"
+                ]
             ],
         ]])
     }
