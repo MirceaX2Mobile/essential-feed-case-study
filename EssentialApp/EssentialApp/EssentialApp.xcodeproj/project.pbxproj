@@ -12,6 +12,7 @@
 		31168C10290BF14D0097A705 /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31168C0F290BF14D0097A705 /* CommentsUIComposer.swift */; };
 		31168C12290BF1DA0097A705 /* CommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31168C11290BF1DA0097A705 /* CommentsUIIntegrationTests.swift */; };
 		31168C14290C18CA0097A705 /* CommentsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31168C13290C18CA0097A705 /* CommentsViewAdapter.swift */; };
+		3174355129E3FF9F00B06985 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174355029E3FF9F00B06985 /* NullStore.swift */; };
 		318C33F7288568E6002B6E24 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C33F6288568E6002B6E24 /* SceneDelegateTests.swift */; };
 		31C905FE284A057100FA8A27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C905FD284A057100FA8A27 /* AppDelegate.swift */; };
 		31C90600284A057100FA8A27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C905FF284A057100FA8A27 /* SceneDelegate.swift */; };
@@ -74,6 +75,7 @@
 		31168C0F290BF14D0097A705 /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
 		31168C11290BF1DA0097A705 /* CommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
 		31168C13290C18CA0097A705 /* CommentsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewAdapter.swift; sourceTree = "<group>"; };
+		3174355029E3FF9F00B06985 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		318C33F6288568E6002B6E24 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 		31C905FA284A057100FA8A27 /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C905FD284A057100FA8A27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		31C905FC284A057100FA8A27 /* EssentialApp */ = {
 			isa = PBXGroup;
 			children = (
+				3174355029E3FF9F00B06985 /* NullStore.swift */,
 				31F1D99929059F8D0073F36E /* CombineHelpers.swift */,
 				31168C0F290BF14D0097A705 /* CommentsUIComposer.swift */,
 				31E7DE8928C0B67500D248A9 /* FeedUIComposer.swift */,
@@ -311,6 +314,7 @@
 			files = (
 				31E7DE9228C0B67500D248A9 /* LoadResourcePresentationAdapter.swift in Sources */,
 				31C905FE284A057100FA8A27 /* AppDelegate.swift in Sources */,
+				3174355129E3FF9F00B06985 /* NullStore.swift in Sources */,
 				31C90600284A057100FA8A27 /* SceneDelegate.swift in Sources */,
 				31168C14290C18CA0097A705 /* CommentsViewAdapter.swift in Sources */,
 				31E7DE9428C0B67500D248A9 /* FeedUIComposer.swift in Sources */,
