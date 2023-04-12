@@ -57,10 +57,10 @@ extension FeedUIIntegrationTests {
         
         func completeLoadMore(with feed: [FeedImage] = [], lastPage: Bool = false, at index: Int = 0) {
             loadMoreRequests[index].send(Paginated(
-                items: feed,
-                loadMorePublisher: lastPage ? nil : { [weak self] in
-                    self?.loadMorePublisher() ?? Empty().eraseToAnyPublisher()
-                }))
+                                            items: feed,
+                                            loadMorePublisher: lastPage ? nil : { [weak self] in
+                                                self?.loadMorePublisher() ?? Empty().eraseToAnyPublisher()
+                                            }))
         }
         
         func completeLoadMoreWithError(at index: Int = 0) {
@@ -94,5 +94,4 @@ extension FeedUIIntegrationTests {
             imageRequests[index].publisher.send(completion: .failure(anyNSError()))
         }
     }
-    
 }
