@@ -25,6 +25,8 @@
 		31C90617284A05CF00FA8A27 /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31C90613284A05CF00FA8A27 /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		31C90635284A619D00FA8A27 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C90634284A619D00FA8A27 /* SharedTestHelpers.swift */; };
 		31C90637284A622400FA8A27 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C90636284A622400FA8A27 /* XCTestCase+MemoryLeakTracking.swift */; };
+		31DF852E29E6E76200FFB007 /* InMemoryFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF852D29E6E76200FFB007 /* InMemoryFeedStore.swift */; };
+		31DF853029E6E77D00FFB007 /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF852F29E6E77D00FFB007 /* HTTPClientStub.swift */; };
 		31E7DE9028C0B67500D248A9 /* FeedViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7DE8E28C0B67500D248A9 /* FeedViewAdapter.swift */; };
 		31E7DE9228C0B67500D248A9 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7DE8C28C0B67500D248A9 /* LoadResourcePresentationAdapter.swift */; };
 		31E7DE9328C0B67500D248A9 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E7DE8A28C0B67500D248A9 /* WeakRefVirtualProxy.swift */; };
@@ -87,6 +89,8 @@
 		31C90622284A1DFE00FA8A27 /* EssentialAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C90634284A619D00FA8A27 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		31C90636284A622400FA8A27 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		31DF852D29E6E76200FFB007 /* InMemoryFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryFeedStore.swift; sourceTree = "<group>"; };
+		31DF852F29E6E77D00FFB007 /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		31E7DE8928C0B67500D248A9 /* FeedUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIComposer.swift; sourceTree = "<group>"; };
 		31E7DE8A28C0B67500D248A9 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		31E7DE8C28C0B67500D248A9 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				31E7DE9A28C0B69A00D248A9 /* ListViewController+TestHelpers.swift */,
 				31E7DE9B28C0B69A00D248A9 /* FeedViewControllerTests+Assertions.swift */,
 				31E7DEB728C23E1E00D248A9 /* UIView+TestHelpers.swift */,
+				31DF852D29E6E76200FFB007 /* InMemoryFeedStore.swift */,
+				31DF852F29E6E77D00FFB007 /* HTTPClientStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 				31E7DEA328C0B6B100D248A9 /* ListViewController+TestHelpers.swift in Sources */,
 				31E7DE9F28C0B6B100D248A9 /* UIRefreshControl+TestHelpers.swift in Sources */,
 				31168C12290BF1DA0097A705 /* CommentsUIIntegrationTests.swift in Sources */,
+				31DF852E29E6E76200FFB007 /* InMemoryFeedStore.swift in Sources */,
 				31E7DEA528C0B6B100D248A9 /* FeedViewControllerTests+Assertions.swift in Sources */,
 				31E7DEA428C0B6B100D248A9 /* UIControl+TestHelpers.swift in Sources */,
 				31E7DEA128C0B6B100D248A9 /* FeedImageCell+TestHelpers.swift in Sources */,
@@ -334,6 +341,7 @@
 				31E7DEA228C0B6B100D248A9 /* UIImage+TestHelpers.swift in Sources */,
 				31C90637284A622400FA8A27 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				31C90635284A619D00FA8A27 /* SharedTestHelpers.swift in Sources */,
+				31DF853029E6E77D00FFB007 /* HTTPClientStub.swift in Sources */,
 				31E7DEB828C23E1E00D248A9 /* UIView+TestHelpers.swift in Sources */,
 				31E7DEAB28C0B89800D248A9 /* FeedAcceptanceTests.swift in Sources */,
 				31E7DEA028C0B6B100D248A9 /* UIButton+TestHelpers.swift in Sources */,

@@ -86,7 +86,10 @@ class FeedAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func launch(httpClient: HTTPClientStub = .offline, store: InMemoryFeedStore = .empty) -> ListViewController {
+    private func launch(
+        httpClient: HTTPClientStub = .offline,
+        store: InMemoryFeedStore = .empty
+    ) -> ListViewController {
         let sut = SceneDelegate(httpClient: httpClient, store: store, scheduler: .immediateOnMainQueue)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
@@ -174,73 +177,5 @@ class FeedAcceptanceTests: XCTestCase {
     
     private func makeCommentMessage() -> String {
         "a message"
-    }
-    
-    private class HTTPClientStub: HTTPClient {
-        private class Task: HTTPClientTask {
-            func cancel() {}
-        }
-        
-        private let stub: (URL) -> HTTPClient.Result
-        
-        init(stub: @escaping (URL) -> HTTPClient.Result) {
-            self.stub = stub
-        }
-        
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
-            completion(stub(url))
-            return Task()
-        }
-        
-        static var offline: HTTPClientStub {
-            HTTPClientStub(stub: { _ in .failure(NSError(domain: "offline", code: 0)) })
-        }
-        
-        static func online(_ stub: @escaping (URL) -> (Data, HTTPURLResponse)) -> HTTPClientStub {
-            HTTPClientStub(stub: { url in .success(stub(url)) })
-        }
-    }
-    
-    private class InMemoryFeedStore: FeedStore, FeedImageDataStore {
-        var feedCache: CachedFeed?
-        private var feedImageDataCache: [URL: Data] = [:]
-        
-        init(feedCache: CachedFeed? = nil) {
-            self.feedCache = feedCache
-        }
-        
-        func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-            feedCache = nil
-            completion(.success(()))
-        }
-        
-        func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-            feedCache = CachedFeed(feed: feed, timestamp: timestamp)
-            completion(.success(()))
-        }
-        
-        func retrieve(completion: @escaping RetrievalCompletion) {
-            completion(.success(feedCache))
-        }
-        
-        func insert(_ data: Data, for url: URL) throws {
-            feedImageDataCache[url] = data
-        }
-        
-        func retrieve(dataForURL url: URL) throws -> Data? {
-            feedImageDataCache[url]
-        }
-        
-        static var empty: InMemoryFeedStore {
-            return InMemoryFeedStore()
-        }
-        
-        static var withExpiredFeedCache: InMemoryFeedStore {
-            return InMemoryFeedStore(feedCache: CachedFeed(feed: [], timestamp: Date.distantPast))
-        }
-        
-        static var withNonExpiredFeedCache: InMemoryFeedStore {
-            return InMemoryFeedStore(feedCache: CachedFeed(feed: [], timestamp: Date()))
-        }
     }
 }
